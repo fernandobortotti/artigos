@@ -111,6 +111,7 @@ python3 client.py
 ```
 
 11. Now, return to the Linux machine, where the terminal with the reverse shell server running will give you access to the Windows machine.
+    
 ![reverse shell](img/poc_shellreverse.png)
 
 12. **Note:** If the connection is interrupted, it's likely because the game has finished loading on the victim's machine. In this case, you won't be able to run commands on the Windows machine anymore. To continue, stop the game on the Linux machine and repeat steps 5 and 6 to resume from where you left off. The attached video demonstrates this process.
