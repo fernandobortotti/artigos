@@ -114,6 +114,7 @@ python3 client.py
 ## Video POC
 
 Video showing how to hack the victim's machine.
+
 ![reverse shell](img/POC_shellReverse.gif)
 
 ## Response from the Steam
