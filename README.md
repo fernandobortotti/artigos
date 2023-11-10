@@ -16,7 +16,7 @@ O principal objetivo deste blog é fornecer informações relevantes, tutoriais 
 
 Os materiais neste repositório estão disponibilizados sob a licença MIT. Por favor, leia e compreenda os termos da licença antes de utilizar ou redistribuir qualquer conteúdo.
 
-**Link para o Blog:**
+**Link para os artigos:**
 
 - [Acesse aqui](https://fernandobortotti.github.io/artigos/)
 
