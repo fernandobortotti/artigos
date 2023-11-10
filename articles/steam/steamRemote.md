@@ -111,9 +111,7 @@ python3 client.py
 12. **Note:** If the connection is interrupted, it's likely because the game has finished loading on the victim's machine. In this case, you won't be able to run commands on the Windows machine anymore. To continue, stop the game on the Linux machine and repeat steps 5 and 6 to resume from where you left off. The attached video demonstrates this process.
 ![reverse shell](img/stop.png)
 
-## Video POC
-
-Video showing how to hack the victim's machine.
+## Video POC: Video showing how to hack the victim's machine.
 
 ![reverse shell](img/POC_shellReverse.gif)
 
