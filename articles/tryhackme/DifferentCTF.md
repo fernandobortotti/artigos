@@ -128,7 +128,7 @@ ftp> get wp-login.php
 e para realizar o upload do arquivo
 
 ```shell
-ftp> get wp-login.php
+ftp> put wp-login.php
 ```
 
 Agora no navegador, iremos chamar a seguinte url:
