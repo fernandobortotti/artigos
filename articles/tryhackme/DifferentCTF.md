@@ -1,4 +1,4 @@
-# tryhacker - Different CTF
+# tryhackme - Different CTF
 
 Estou conectado na VPN e usando o Kali linux, além disso, criei um diretório com o nome **differentCTF** no meu kali, todos os arquivos que forem necessário usar estão no diretório que criei no kali.
 
