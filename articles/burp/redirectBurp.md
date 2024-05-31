@@ -27,15 +27,17 @@ Siga os passos abaixo para configurar essa funcionalidade.
 2. Em **Redirect to port** (8), coloque a porta usada pelo serviço web da aplicação, geralmente a porta padrão para HTTP é 80.
 3. Após essas configurações, clique em **OK** (9).
 
+![Redirecionamento configurado](img/image_path4.png)
+
 Seu Burp Suite deve estar configurado da seguinte forma:
 
-![Redirecionamento configurado](img/image_path4.png)
+![Exemplo Redirecionamento configurado](img/image_path5.png)
 
 ## Passo 4: Seleção da Regra Criada
 
 1. Selecione a regra que você criou para garantir que o redirecionamento funcione corretamente.
 
-![Selecionar regra](img/image_path5.png)
+![Selecionar regra](img/image_path6.png)
 
 Observe que a interface usada é `127.0.0.1` na porta `8081`. Portanto, para enviar a requisição para o Burp Suite, será necessário utilizar essa interface e porta.
 
@@ -43,10 +45,10 @@ Observe que a interface usada é `127.0.0.1` na porta `8081`. Portanto, para env
 
 1. Com a configuração feita, vamos testar usando um comando `curl` para fazer uma requisição GET.
 
-![Teste com curl](img/image_path6.png)
+![Teste com curl](img/image_path7.png)
 
 2. No Burp Suite, você pode acompanhar as requisições pelo **Logger** e pelo **HTTP History**.
 
-![HTTP History](img/image_path7.png)
+![HTTP History](img/image_path8.png)
 
 Você também pode usar o **Intruder** para modificar as requisições, aproveitando todas as funcionalidades do Burp Suite para análise e teste.
