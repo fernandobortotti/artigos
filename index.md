@@ -11,3 +11,13 @@ O principal objetivo deste blog é fornecer informações relevantes, tutoriais 
 
 1. [Resolução da máquina Different CTF](articles/tryhackme/DifferentCTF.md)
     - Solução da máquina do tryhackme explorando a vulnerabilidade do PwnKit para fazer a escalação de privilégio.
+
+## Dicas
+
+Breve artigos com dicas para ajudar quem está começando.
+
+### Burp
+
+1. 🎯 [Explorando Técnicas de Redirecionamento de Tráfego para o Burp Suite!](articles/burp/redirectBurp.md)
+   
+    - 🔍 Você já quis analisar cada detalhe das requisições feitas por suas ferramentas de pentest ou scripts personalizados? Nesse breve artigo ensino uma técnica valiosa para redirecionar o tráfego de uma interface diretamente para o Burp Suite. Essa configuração permite uma análise detalhada e precisa, revelando interações que podem passar despercebidas.
