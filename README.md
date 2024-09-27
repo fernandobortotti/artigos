@@ -2,7 +2,7 @@
 
 **Descrição do Repositório:**
 
-Bem-vindo a ideia dessa página é produzir conteúdo de Hacking em geral. Aqui, compartilharei artigos e recursos elaborados com o propósito exclusivo de servir como material de estudo.
+Bem-vindo! A ideia dessa página é produzir conteúdo de Hacking em geral. Aqui, compartilharei artigos e recursos elaborados com o propósito exclusivo de servir como material de estudo.
 
 **Objetivo:**
 
