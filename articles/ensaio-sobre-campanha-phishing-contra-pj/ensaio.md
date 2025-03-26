@@ -2,7 +2,7 @@
 
 ## Contexto e Motivação  
 
-Este relatório apresenta os resultados de uma investigação independente sobre uma campanha de phishing direcionada a **Pessoas Jurídicas (PJ)** no Brasil, identificada a partir de um e-mail fraudulento recebido em 19/03/2025. O remetente, identificado como `Prefeitura Municipal NFE <Prefeitura.Municipal26724@%prefeitura.gov.br>`, tem como objetivo se passar por Prefeitura municipal ed São Paulo, para induzir vítimas a baixar um Trojan. Note que o remetente contém inconsistências (e.g., `%prefeitura.gov.br`), indicando tentativa de mascarar a origem.
+Este relatório apresenta os resultados de uma investigação independente sobre uma campanha de phishing direcionada a **Pessoas Jurídicas (PJ)** no Brasil, identificada a partir de um e-mail fraudulento recebido em 19/03/2025. O remetente, identificado como `Prefeitura Municipal NFE <Prefeitura.Municipal26724@%prefeitura.gov.br>`, tem como objetivo se passar por Prefeitura municipal ed São Paulo, para induzir vítimas a baixar um Trojan. Note que o remetente contém inconsistências (e.g., `%prefeitura[.]gov[.]br`), indicando tentativa de mascarar a origem, além disso, o email é propositalmente genérico, pois não fala qual prefeitura que está enviado o email, aumentando a possibilidade de ser um email falso.
 
 A campanha explora a **urgência burocrática** e a familiaridade de empresas com processos fiscais eletrônicos, como a Nota Fiscal Eletrônica (NF-e). O e-mail inclui elementos aparentemente legítimos, como:  
 
@@ -11,7 +11,7 @@ A campanha explora a **urgência burocrática** e a familiaridade de empresas co
 - Links para visualização de "PDF" e "XML";  
 - Ameaça de aplicação de taxa após o prazo de **24/03/2025**, combinando pressão psicológica com apelo à autoridade municipal.  
 
-Já os links "Clique aqui para visualizar" direcionam para subdomínios não relacionados a órgãos governamentais. Ao interagir com os links, um arquivo executável é baixado. Esse arquivo é um Downloader, que realiza o download de outro executável, esse por sua vez realiza o verifica se o google chrome está instalado, senão realiza a instalação, após isso baixa e instala uma extensão maliciosa no google chrome. Durante a redação deste relatório, o servidor sofreu atualizações que alteraram os scripts disponíveis, indicando que a campanha permanece em atividade e sob monitoramento contínuo.  
+Já os links "Clique aqui para visualizar" direcionam para subdomínios não relacionados a órgãos governamentais. Ao interagir com os links, um arquivo executável é baixado. Esse arquivo é um Downloader. Nesse caso, o Downloader é um script em PowerShell, seu obojetivo é baixar arquivos maliciosos para o dispositivo da vítima. No caso particular, ele realiza o download de outro executável, que é um Trojan em PowerShell. O Trojan, por sua vez, tem alguns objetivos, como por exemplo, faz a verificação se o google chrome está instalado, caso negativo realiza a instalação do navegador, após isso baixa e instala uma extensão maliciosa no navegador do google chrome. Durante a redação deste relatório, o servidor sofreu atualizações que alteraram os scripts disponíveis, indicando que a campanha permanece em atividade e sob monitoramento contínuo.  
 
 ## Resumo do ataque
 
@@ -23,21 +23,21 @@ O fluxograma a seguir resume os passos mais importante do ataque.
 
 Para conduzir esta análise, utilizou-se uma máquina virtual com o sistema operacional Kali Linux e uma VPN para garantir a segurança das requisições realizadas.  
 
-O ataque de phishing inicia-se com o envio de um e-mail fraudulento à vítima, elaborado para simular uma comunicação legítima. Conforme ilustrado na **Figura 1**, o conteúdo da mensagem refere-se a uma Nota Fiscal Eletrônica supostamente emitida, solicitando que o destinatário realize duas ações: clicar em um link para download e, posteriormente, executar o arquivo obtido.  
+O ataque de phishing inicia-se com o envio de um e-mail para a vítima. Esse email foi elaborado para simular uma comunicação legítima, entretanto o remetente tem um endereço de email genérico e não tem identificação, isso pode ser um indício de e-mail falso. Conforme ilustrado na **Figura 1**, o conteúdo da mensagem refere-se a uma Nota Fiscal Eletrônica supostamente emitida, solicitando que o destinatário realize duas ações: clicar em um link para download e, posteriormente, executar o arquivo obtido.  
 
 ![E-mail malicioso.](img/image.png)  
 
-Como evidenciado na **Figura 1**, ambos os links presentes no e-mail direcionam para o mesmo subdomínio: `enota.clientepj.com`. Para investigar a campanha, o primeiro passo consistiu em verificar a resolução DNS desse subdomínio por meio do comando:  
+Como evidenciado na **Figura 1**, ambos os links presentes no e-mail direcionam para o mesmo subdomínio: `enota[.]clientepj[.]com`. Para investigar a campanha, o primeiro passo consistiu em verificar a resolução do DNS desse subdomínio por meio do comando abaixo:  
 
 ```shell
 dig enota.clientepj.com  
 ```  
 
-Os resultados, apresentados na **Figura 2**, indicam que o subdomínio está associado aos endereços IP 172.67.213.181 e 104.21.93.183, pertencentes à Cloudflare. Isso sugere que o atacante emprega serviços de *proxy* para mascarar o servidor real.  
+Os resultados, apresentados na **Figura 2**, indicam que o subdomínio está associado aos endereços IP 172[.]67[.]213[.]181 e 104[.]21[.]93[.]183, pertencentes à Cloudflare (para verificar use o comando `whois ip`). Isso sugere que o atacante emprega serviços de *proxy* para mascarar o servidor real.  
 
 ![Resolução do subdomínio](img/image-1.png)  
 
-Adicionalmente, constatou-se que o subdomínio `enota.clientepj.com` apresenta vulnerabilidade de *Directory Listing* (listagem de diretórios), expondo publicamente seus arquivos, conforme exibido na **Figura 3**.  
+Adicionalmente, constatou-se que o subdomínio `enota[.]clientepj[.]com` apresenta vulnerabilidade de *Directory Listing* (listagem de diretórios), expondo publicamente seus arquivos, conforme exibido na **Figura 3**.  
 
 ![Servidor com a lista de arquivos e diretórios.](img/image-5.png)  
 
@@ -87,7 +87,7 @@ Esse trecho tenta garantir a execução como administrador para realizar ações
 powershell -NoProfile -ExecutionPolicy Bypass -Command "..."
 ```
 
-Verifica e se necessário instala o provedor NuGet e módulos como PowerShellGet e PSReadline. Além disso, prepara o ambiente para executar scripts PowerShell avançados, contornando restrições de segurança (ExecutionPolicy Bypass).
+Verifica se é necessário instalar o provedor NuGet e módulos como PowerShellGet e PSReadline. Além disso, prepara o ambiente para executar scripts PowerShell avançados, contornando restrições de segurança (ExecutionPolicy Bypass).
 
 O próximo passo é o download da carga maliciosa:
 
@@ -735,7 +735,7 @@ Esta extensão do Chrome é projetada para **roubar credenciais, tokens de auten
 
 ### **2. Comunicação com o Servidor C2**
 
-- **URL do C2**: `https://ranchocentral.com/` (servidor de comando e controle).  
+- **URL do C2**: `https://ranchocentral[.]com/` (servidor de comando e controle).  
 - **Endpoints**:  
   - `comando_temporario.php`: Recebe dados roubados e envia comandos.  
   - Gera um UUID único para o dispositivo usando um algoritmo pseudoaleatório: `chrome.storage.sync.set({ eindeutigeKennung: [...] }); `
@@ -786,7 +786,7 @@ Esses são os indicativos que a quadrilha está se aprimorando e usando uma nova
 1. **Remoção Imediata**: Desinstalar a extensão do Chrome (`Diagnostico Segurança PJ` ou `Segurança PJ`).  
 2. **Alteração de Senhas**: Priorizar contas bancárias e governamentais (ex.: Receita Federal, bancos).  
 3. **Monitoramento de Contas**: Verificar transações não autorizadas e logins suspeitos.  
-4. **Bloqueio de Domínio**: Adicionar `ranchocentral.com` a firewalls e filtros de DNS.  
+4. **Bloqueio de Domínio**: Adicionar `ranchocentral[.]com` a firewalls e filtros de DNS.  
 5. **Análise Forense**: Investigar histórico de navegação e logs de acesso.  
 6. **Isolamento**: Desconectar o sistema comprometido da rede.  
 7. **Remoção**:  
@@ -801,15 +801,13 @@ Esses são os indicativos que a quadrilha está se aprimorando e usando uma nova
 
 | Tipo         | Valor                                                                 |  
 |--------------|-----------------------------------------------------------------------|  
-| **IP Malicioso** | `142.54.185.178` (Portas: 5555/TCP, 5556/TCP)                        |  
-| **Domínio**      | `enota.clientepj.com` (Associado ao download do `.ps1`)               |  
-| **Extensão ID**    | Chrome ID: `nplfchpahihleeejpjmodggckakhglee`                         |  
-| **Arquivos**     | `cliente.ps1`, `ProcessoTrabalhista.bat`                             |  
-| **Registry Key** | `HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\PWSecurity`     |  
-| **Domínio C2**     | `ranchocentral.com`                                                   |  
-| **Endpoints**      | `/comando_temporario.php`                                             |  
-| **Parâmetros**     | `eindeutigeKennung`, `k`, `senha8`, `codigo`                          |  
-| **Extensão**           | `Diagnostico Segurança PJ` ou `Segurança PJ`|  
+| **IP Malicioso** | `142[.]54[.]185[.]178` (Portas: 5555/TCP, 5556/TCP), `172[.]67[.]213[.]181` e `104[.]21[.]93[.]183   ` |  
+| **Domínio**      | `enota[.]clientepj[.]com`, `ranchocentral[.]com` , `clientepj[.]com`|  
+| **Extensão**    | Chrome ID: `nplfchpahihleeejpjmodggckakhglee` ou `Diagnostico Segurança PJ` ou `Segurança PJ`  |  
+| **Arquivos**     | `cliente.ps1`, `ProcessoTrabalhista[.]bat` |  
+| **Registry Key** | `HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\PWSecurity` |  
+| **Endpoints**      | `/comando_temporario.php`|  
+| **Parâmetros**     | `eindeutigeKennung`, `k`, `senha8`, `codigo` |  
 
 ## Conclusão
 
