@@ -767,7 +767,7 @@ chrome.tabs.sendMessage(e[0].id, { befehlstyp: "codeZumLesen", bildadresse: bild
 
 Além disso, ao pesquisar por `Segurança PJ` na chrome web store apareceu outra extensão com mais de 700 downloads já realizados, é basicamente a mesma estrutura, só muda o endereço do C2.
 
-![Extensões no chromewebstore | 1 ](img/image-10.png)
+![Extensões no chromewebstore](img/image-10.png)
 
 ## Observações
 
