@@ -4,6 +4,10 @@ Bem-vindo a ideia dessa página é produzir conteúdo de Hacking em geral. Aqui,
 
 O principal objetivo deste blog é fornecer informações relevantes, tutoriais práticos e insights aprofundados na área de segurança de informação. Os temas abordados incluirão práticas de bug bounty, técnicas de hacking, análise de vulnerabilidades, ctf, e muito mais.
 
+## Análise de estática de Malware
+
+1. [Análise estática de uma variante do Agent Tesla](articles/analise-malware/analise_estatica_agenttesla.md) - A análise estática é fundamental para compreender o funcionamento de um malware sem executá-lo, permitindo examinar sua estrutura, fluxo de controle e artefatos embutidos. No presente artigo, essa metodologia foi aplicada para dissecar o Agent Tesla, revelando suas camadas de ofuscação, cadeia de carregamento.
+
 ## Ensaios e análises
 
 1. [Ensaio sobre Campanha de Phishing Direcionada a Pessoa Jurídica (PJ) no Brasil - Parte I](articles/ensaio-sobre-campanha-phishing-contra-pj/ensaio.md)
