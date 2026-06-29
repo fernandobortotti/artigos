@@ -1,0 +1,322 @@
+---
+---
+
+@import 'jekyll-theme-hacker';
+
+/* =========================================================
+   Customizações sobre o tema "Hacker"
+   Identidade: terminal verde-no-preto, foco em red team
+   ========================================================= */
+
+:root {
+  --green: #b5e853;
+  --green-soft: #8fd13f;
+  --bg: #0d0f0c;
+  --panel-solid: #141713;
+  --border: rgba(181, 232, 83, 0.22);
+  --border-strong: rgba(181, 232, 83, 0.55);
+  --muted: #8a948a;
+  --link: #7fd0ff;
+
+  /* Severidade (padrão CVSS) — fundo sólido + texto escuro para legibilidade */
+  --crit: #ff3b5c;
+  --crit-fg: #2a0008;
+  --high: #ff8c42;
+  --high-fg: #2a1400;
+  --med: #ffd23f;
+  --med-fg: #2a2200;
+  --low: #8fd13f;
+  --low-fg: #0f2200;
+}
+
+body {
+  font-family: 'JetBrains Mono', Monaco, "Bitstream Vera Sans Mono", "Lucida Console", monospace;
+  background: var(--bg) url("../images/bkg.png") 0 0;
+}
+
+.container {
+  max-width: 1040px;
+}
+
+/* ---------- Header / Nav ---------- */
+
+.site-header {
+  border-bottom: 1px dashed var(--border-strong);
+  margin-bottom: 28px;
+}
+
+#a-title h1 {
+  margin-left: 0;
+}
+
+.site-header .tagline {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 14px;
+  color: var(--green);
+  text-decoration: none;
+  text-shadow: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(181, 232, 83, 0.04);
+  transition: all 0.15s ease;
+}
+
+.site-nav a:hover {
+  border-color: var(--green);
+  background: rgba(181, 232, 83, 0.12);
+  box-shadow: 0 0 8px rgba(181, 232, 83, 0.25);
+}
+
+.site-nav .nav-github {
+  color: var(--link);
+  margin-left: auto;
+}
+
+/* ---------- Hero (home) ---------- */
+
+.hero {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 22px 24px;
+  margin-bottom: 32px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero .prompt {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.hero .prompt::before {
+  content: "$ ";
+  color: var(--green);
+}
+
+.hero h1,
+.hero h2 {
+  margin-top: 0;
+}
+
+.hero p {
+  margin-bottom: 0;
+}
+
+.blink {
+  color: var(--green);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Caixas de destaque ---------- */
+
+.callout {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 0 0 28px;
+  background: var(--panel-solid);
+}
+
+.callout.cves {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 22px rgba(181, 232, 83, 0.08);
+}
+
+.callout h3 {
+  margin-top: 0;
+}
+
+/* ---------- Badges de severidade ---------- */
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-shadow: none;
+  border: 0;
+}
+
+.badge.crit { background: var(--crit); color: var(--crit-fg); }
+.badge.high { background: var(--high); color: var(--high-fg); }
+.badge.med  { background: var(--med);  color: var(--med-fg); }
+.badge.low  { background: var(--low);  color: var(--low-fg); }
+
+/* badge inline dentro de um link de card não deve herdar sublinhado */
+a .badge { text-decoration: none; }
+
+/* ---------- Listas de artigos como cards ---------- */
+
+.post-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-list ul li {
+  list-style: none;
+  list-style-image: none;
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.post-list ul li:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 10px rgba(181, 232, 83, 0.12);
+}
+
+.post-list ul li a {
+  color: var(--green);
+  font-weight: 700;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+.post-list ul li a:hover {
+  text-decoration: underline;
+}
+
+.post-list ul li .badge {
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.post-list ul li ul {
+  margin-top: 8px;
+}
+
+.post-list ul li ul li {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+}
+
+.post-list ul li ul li:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Section labels (categorias) com cara de comando */
+
+.post-list h2,
+.cat h2 {
+  font-size: 20px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 6px;
+}
+
+.post-list h2::before,
+.cat h2::before {
+  content: "// ";
+  color: var(--green-soft);
+}
+
+/* ---------- Tabelas (usadas no artigo de CVEs) ---------- */
+
+#main_content table {
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+
+#main_content tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+#main_content td {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: 48px;
+  padding: 24px 0 40px;
+  border-top: 1px dashed var(--border-strong);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.site-footer .footer-prompt {
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.site-footer .footer-prompt .prompt-sign {
+  color: var(--green-soft);
+}
+
+.site-footer p {
+  margin: 0 0 6px;
+}
+
+.site-footer a {
+  color: var(--link);
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+
+.footer-social a {
+  padding: 4px 12px;
+  font-size: 13px;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(181, 232, 83, 0.04);
+  transition: all 0.15s ease;
+}
+
+.footer-social a:hover {
+  border-color: var(--green);
+  background: rgba(181, 232, 83, 0.12);
+  box-shadow: 0 0 8px rgba(181, 232, 83, 0.25);
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 600px) {
+  .site-nav .nav-github {
+    margin-left: 0;
+  }
+  .hero,
+  .callout {
+    padding: 16px 16px;
+  }
+}
