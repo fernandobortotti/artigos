@@ -21,6 +21,11 @@ O principal objetivo deste blog é fornecer informações relevantes, tutoriais 
 2. [SQL Injection Time-Based Blind](articles/bughunt/SQLiTimeBasedBlind.md)
     - Este artigo explora uma vulnerabilidade de SQL Injection Time-Based Blind encontrada em uma API de um programa privado de bug bounty. O objetivo é mostrar como foi possível expolorar essa vulnerabilidade.
 
+## CVEs
+
+1. [CVEs que encontrei no pgAdmin 4](articles/cves/cves-pgadmin.md)
+    - Conjunto de vulnerabilidades que reportei de forma responsável no pgAdmin 4 (a ferramenta de administração do PostgreSQL) e que foram publicadas oficialmente no cve.org. O artigo detalha cada falha, desde Stored XSS e desserialização insegura (RCE) até path traversal via symlink e bypass de bloqueio de conta, com impacto, versões afetadas e como cada uma foi corrigida.
+
 ## CTF
 
 1. [Resolução da máquina Different CTF](articles/tryhackme/DifferentCTF.md)
